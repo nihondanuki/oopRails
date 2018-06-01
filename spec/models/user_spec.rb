@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "user valid?" do
-    subject { User.new(params) }
+    subject { User.create(params) }
     context "user is valid" do
       let(:params) {{email: "a@a.com", password: "foobar", password_confirmation: "foobar"}}
       it {is_expected.to be_valid}
@@ -15,10 +15,10 @@ RSpec.describe User, type: :model do
       let(:params) {{email: "a@a.com"}}
       it {is_expected.to be_invalid}
     end
-    context "user in not unique" do
+    context "user is not unique" do
       let(:params) {{email: "a@a.com", password: "foobar", password_confirmation: "foobar"}}
       before do
-        User.new(params).save
+        User.create(params).save
       end
       it {is_expected.to be_invalid}
     end
