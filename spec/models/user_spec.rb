@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
     context "user is not unique" do
       let(:params) {{email: "a@a.com", password: "foobar", password_confirmation: "foobar"}}
       before do
-        User.create(params).save
+        User.create(params)
       end
       it {is_expected.to be_invalid}
     end
